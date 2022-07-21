@@ -1,8 +1,82 @@
-<%for(var i =0 ; i < model.length; i++){%>
-    <h1><%=model[i].name%> - <%=model[i].year%></h1>
+<!doctype html>
+<html lang="en">
+
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script data-ad-client="ca-pub-4907529204629664" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4907529204629664"
+     crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Watch Series!</title>
+  </head>
+  <body>
+  
+  
+  
+  
+  
 
 
 
-<%}%>
 
-<a href="/nextPage">Next page <%=model.pageNumber%></a>
+
+
+    <div class="container">
+      <div class="row g-3" >
+        
+  
+        <%for(var i =0 ; i < model.length; i++){%>
+  
+        <div class="col-6 col-md-4 col-lg-3 ">
+          <div class="card text-white bg-dark w-90">
+  
+            
+            <img src="<%=model[i].large_cover_image%>"  class="img-fluid rounded-start"> 
+            <div class="card-body">
+              <a href="/watch" class="btn btn-primary">Watch <%=model[i].name%> Year <%=model[i].year%></a>
+            </div>
+          </div>
+  
+        </div>
+  
+        <%}%>
+      </div>
+
+      <a href="/nextPage/<%=page%>">Next Page <%=page%></a>
+    </div>
+
+ 
+  
+  
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+
+  <style>
+    body{
+            background-color: #343434;
+        }
+  </style>
+</html>
