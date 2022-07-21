@@ -1,1 +1,8 @@
-<h1>Hello</h1>
+<%for(var i =0 ; i < model.length; i++){%>
+    <h1><%=model[i].name%> - <%=model[i].year%></h1>
+
+
+
+<%}%>
+
+<a href="/nextPage">Next page <%=model.pageNumber%></a>
