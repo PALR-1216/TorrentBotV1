@@ -84,6 +84,12 @@ app.get('/nextPage/:pageNumber', async(req,res)=>{
 
 })
 
+app.get('/watch/:slug/:hash/:title', async(req,res) =>{
+    let magnet = `magnet:?xt=urn:btih:${req.params.hash}&dn=${req.params.slug}&tr=http://track.one:1234/announce&tr=udp://p4p.arenabg.com:1337&udp://tracker.leechers-paradise.org:6969&udp://tracker.openbittorrent.com:80`
+    res.render('video', {videoMagnet: magnet, movieName:req.params.title})
+
+})
+
 
 
 app.listen(3000)
