@@ -13,10 +13,19 @@ app.set('view engine', 'ejs');
 
 app.get('/',async(req,res) =>{
     let movieData = [];
-    let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${1}&limit=20&query_term=`
+    let page = req.query.page;
+    let limit = req.query.limit;
+    if(!page) {
+        page = 1
+    }
+
+    if(!limit) {
+        limit = 10
+    }
+    let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${page}&limit=20&query_term=`
     await axios.get(url).then((allData) =>{
         let data = allData.data.data.movies
-        let page = allData.data.data.page_number;
+        
         for(i in data) {
             
             let name = data[i].title;
@@ -47,18 +56,11 @@ app.get('/',async(req,res) =>{
     // res.render('home')
 })
 
-app.get('/nextPage/:pageNumber', async(req,res)=>{
-    let movieData = [];
-    let currentPage = req.params.pageNumber;
-    let urlNext = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${currentPage + 1}&limit=20&query_term=`
-    
-
-})
 
 app.get('/watch/:slug/:hash/:title', async(req,res) =>{
     let magnet = `magnet:?xt=urn:btih:${req.params.hash}&dn=${req.params.slug}&tr=http://track.one:1234/announce&tr=udp://p4p.arenabg.com:1337&udp://tracker.leechers-paradise.org:6969&udp://tracker.openbittorrent.com:80`
     res.render('video', {videoMagnet: magnet, movieName:req.params.title})
-    getTorrentData(req.params.hash, req.params.slug);
+    // getTorrentData(req.params.hash, req.params.slug);
 
 })
 
