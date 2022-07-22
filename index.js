@@ -14,15 +14,16 @@ app.set('view engine', 'ejs');
 app.get('/',async(req,res) =>{
     let movieData = [];
     let page = req.query.page;
-    let limit = req.query.limit;
+    let pageInt = parseInt(page)
+
     if(!page) {
-        page = 1
+        pageInt = 1
     }
 
-    if(!limit) {
-        limit = 10
-    }
-    let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${page}&limit=20&query_term=`
+   
+  
+    
+    let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${page}&limit=20&sort=seeds&query_term=`
     await axios.get(url).then((allData) =>{
         let data = allData.data.data.movies
         
@@ -35,20 +36,28 @@ app.get('/',async(req,res) =>{
             let small_cover_image = data[i].small_cover_image;
             let torrents = data[i].torrents;
             let slug = data[i].slug;
-            let movieObject = {
-                page_number:page,
-                name:name,
-                imdb_code:imdb_code,
-                year:year,
-                small_cover_image, small_cover_image,
-                large_cover_image:large_cover_image,
-                slug:slug,
-                torrents:torrents[1],
-                
-            }
-            movieData.push(movieObject)
+            // if(year >= 2020) {
+                // console.log(`${name} -- ${year}`)
+
+                let movieObject = {
+                    page_number:page,
+                    name:name,
+                    imdb_code:imdb_code,
+                    year:year,
+                    small_cover_image, small_cover_image,
+                    large_cover_image:large_cover_image,
+                    slug:slug,
+                    torrents:torrents[1],
+                    
+                }
+                movieData.push(movieObject)
+            // }
+
+
+            
             
         }
+            
         
         res.render('home', {model:movieData, page:page })
         // res.json(movieData)
@@ -57,12 +66,15 @@ app.get('/',async(req,res) =>{
 })
 
 
+
 app.get('/watch/:slug/:hash/:title', async(req,res) =>{
     let magnet = `magnet:?xt=urn:btih:${req.params.hash}&dn=${req.params.slug}&tr=http://track.one:1234/announce&tr=udp://p4p.arenabg.com:1337&udp://tracker.leechers-paradise.org:6969&udp://tracker.openbittorrent.com:80`
     res.render('video', {videoMagnet: magnet, movieName:req.params.title})
     // getTorrentData(req.params.hash, req.params.slug);
 
 })
+
+
 
 
 function getTorrentData(slug, hash) {
