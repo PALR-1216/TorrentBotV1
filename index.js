@@ -13,14 +13,13 @@ app.set('view engine', 'ejs');
 
 app.get('/',async(req,res) =>{
     let movieData = [];
-    let page = req.query.page;
-    let pageInt = parseInt(page)
+    let page = req.query.page || 1
 
-    if(!page) {
-        pageInt = 1
+    if(page) {
+        page += 1
     }
 
-   
+
   
     
     let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${page}&limit=20&sort=seeds&query_term=`
