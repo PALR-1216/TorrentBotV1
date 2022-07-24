@@ -9,7 +9,12 @@
     <script data-ad-client="ca-pub-4907529204629664" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4907529204629664"
      crossorigin="anonymous"></script>
-
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -39,7 +44,8 @@
             
             <img src="<%=model[i].large_cover_image%>"  class="img-fluid rounded-start"> 
             <div class="card-body">
-              <a class="btn btn-primary" href="watch/<%=model[i].slug%>/<%=model[i].hash%>/<%=model[i].name%>">Watch <%=model[i].name%> Year <%=model[i].year%></a>
+              <a class="btn btn-primary" href="watch/<%=model[i].slug%>/<%=model[i].torrents.hash%>/<%=model[i].name%>">Watch <%=model[i].name%> Year <%=model[i].year%></a>
+              
               
             </div>
           </div>
@@ -48,9 +54,13 @@
   
         <%}%>
       </div>
-      <p style="color: white">Current Page = <%=CurrentPage%></p>
-      <a href="?page=<%=NextPage%>">Next Page <%=NextPage%></a>
-      <a href="?page=<%=BackPage%>">Back Page <%=BackPage%></a>
+     
+      <ul style="align-items: center; align-self: center; align-content: center; display: flex;" class="pagination pagination-lg">
+        <li><a href="?page=<%=BackPage%>"><%=BackPage%></a></li>
+        <li class="active"><a href=">page=<%=CurrentPage%>"><%=CurrentPage%></a></li>
+        <li><a href="?page=<%=NextPage%>"><%=NextPage%></a></li>
+        
+      </ul>
       
       
     </div>

@@ -34,8 +34,9 @@ app.get('/',async(req,res) =>{
             let large_cover_image = data[i].large_cover_image;
             let small_cover_image = data[i].small_cover_image;
             let torrents = data[i].torrents;
-            let slug = data[i].slug;
             
+            let slug = data[i].slug;
+           
             
             // if(year >= 1997) {
                 // console.log(`${name} -- ${year}`)
@@ -48,9 +49,8 @@ app.get('/',async(req,res) =>{
                     small_cover_image, small_cover_image,
                     large_cover_image:large_cover_image,
                     slug:slug,
-                    hash:torrents[1].hash,
                     torrents:torrents[1],
-
+                    
                 }
             
                 movieData.push(movieObject)
@@ -62,10 +62,10 @@ app.get('/',async(req,res) =>{
         }
             
         
-        res.render('home', {model:movieData, NextPage:currentPage + 1 , BackPage: currentPage - 1, CurrentPage:currentPage})
-        // res.json(movieData)
+        // res.render('home', {model:movieData, NextPage:currentPage + 1 , BackPage: currentPage - 1, CurrentPage:currentPage})
+        res.json(movieData)
     })
-    // res.render('home')
+  
 })
 
 
