@@ -22,7 +22,7 @@ app.get('/',async(req,res) =>{
 
   
     
-    let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${page}&limit=20&sort=seeds&query_term=`
+    let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${page}&limit=20&sort=seeds`
     await axios.get(url).then((allData) =>{
         let data = allData.data.data.movies
         
@@ -35,7 +35,8 @@ app.get('/',async(req,res) =>{
             let small_cover_image = data[i].small_cover_image;
             let torrents = data[i].torrents;
             let slug = data[i].slug;
-            // if(year >= 2020) {
+            
+            if(year >= 1997) {
                 // console.log(`${name} -- ${year}`)
 
                 let movieObject = {
@@ -46,11 +47,12 @@ app.get('/',async(req,res) =>{
                     small_cover_image, small_cover_image,
                     large_cover_image:large_cover_image,
                     slug:slug,
-                    torrents:torrents[1],
+                    size:torrents[1].size,
+                    torrents:torrents[1]
                     
                 }
                 movieData.push(movieObject)
-            // }
+            }
 
 
             
