@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 app.get('/',async(req,res) =>{
     let movieData = [];
     let page = req.query.page || 1
+    let currentPage = parseInt(page)
 
   
 
@@ -34,7 +35,7 @@ app.get('/',async(req,res) =>{
             let torrents = data[i].torrents;
             let slug = data[i].slug;
             
-            if(year >= 1997) {
+            // if(year >= 1997) {
                 // console.log(`${name} -- ${year}`)
 
                 let movieObject = {
@@ -45,12 +46,12 @@ app.get('/',async(req,res) =>{
                     small_cover_image, small_cover_image,
                     large_cover_image:large_cover_image,
                     slug:slug,
-                    size:torrents[1].size,
                     torrents:torrents[1]
                     
                 }
+            
                 movieData.push(movieObject)
-            }
+            // }
 
 
             
@@ -58,7 +59,7 @@ app.get('/',async(req,res) =>{
         }
             
         
-        res.render('home', {model:movieData, page:page })
+        res.render('home', {model:movieData, NextPage:currentPage + 1 , BackPage: currentPage - 1, CurrentPage:currentPage})
         // res.json(movieData)
     })
     // res.render('home')
