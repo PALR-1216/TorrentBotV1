@@ -25,6 +25,7 @@ app.get('/',async(req,res) =>{
     await axios.get(url).then((allData) =>{
         let data = allData.data.data.movies
         
+        
         for(i in data) {
             
             let name = data[i].title;
@@ -34,6 +35,7 @@ app.get('/',async(req,res) =>{
             let small_cover_image = data[i].small_cover_image;
             let torrents = data[i].torrents;
             let slug = data[i].slug;
+            
             
             // if(year >= 1997) {
                 // console.log(`${name} -- ${year}`)
@@ -46,8 +48,9 @@ app.get('/',async(req,res) =>{
                     small_cover_image, small_cover_image,
                     large_cover_image:large_cover_image,
                     slug:slug,
-                    torrents:torrents[1]
-                    
+                    hash:torrents[1].hash,
+                    torrents:torrents[1],
+
                 }
             
                 movieData.push(movieObject)

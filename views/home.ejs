@@ -39,7 +39,8 @@
             
             <img src="<%=model[i].large_cover_image%>"  class="img-fluid rounded-start"> 
             <div class="card-body">
-              <a class="btn btn-primary" href="watch/<%=model[i].slug%>/<%=model[i].torrents.hash%>/<%=model[i].name%>">Watch <%=model[i].name%> Year <%=model[i].year%></a>
+              <a class="btn btn-primary" href="watch/<%=model[i].slug%>/<%=model[i].hash%>/<%=model[i].name%>">Watch <%=model[i].name%> Year <%=model[i].year%></a>
+              
             </div>
           </div>
   
@@ -47,9 +48,10 @@
   
         <%}%>
       </div>
-      <a href="?page=<%=BackPage%>">Back Page <%=BackPage%></a>
       <p style="color: white">Current Page = <%=CurrentPage%></p>
       <a href="?page=<%=NextPage%>">Next Page <%=NextPage%></a>
+      <a href="?page=<%=BackPage%>">Back Page <%=BackPage%></a>
+      
       
     </div>
 
