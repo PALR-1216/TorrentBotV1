@@ -62,8 +62,8 @@ app.get('/',async(req,res) =>{
         }
             
         
-        // res.render('home', {model:movieData, NextPage:currentPage + 1 , BackPage: currentPage - 1, CurrentPage:currentPage})
-        res.json(movieData)
+        res.render('home', {model:movieData, NextPage:currentPage + 1 , BackPage: currentPage - 1, CurrentPage:currentPage})
+        //res.json(movieData)
     })
   
 })
