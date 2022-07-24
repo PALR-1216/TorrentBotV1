@@ -15,14 +15,12 @@ app.get('/',async(req,res) =>{
     let movieData = [];
     let page = req.query.page || 1
 
-    if(page) {
-        page += 1
-    }
+  
 
 
   
     
-    let url = `https://yts.mx/api/v2/list_movies.json?quality=1080p&page=${page}&limit=20&sort=seeds`
+    let url = `https://yts.mx/api/v2/list_movies.json?page=${page}&limit=20&sort=seeds`
     await axios.get(url).then((allData) =>{
         let data = allData.data.data.movies
         
